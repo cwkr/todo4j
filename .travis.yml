@@ -1,0 +1,12 @@
+language: java
+jdk:
+  - openjdk8
+  - openjdk11
+cache:
+  directories:
+    - .autoconf
+    - $HOME/.m2/repository
+install:
+    - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true -Dgpg.skip=true -B -V
+after_success:
+  - mvn jacoco:report coveralls:report
