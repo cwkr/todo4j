@@ -6,11 +6,12 @@ import java.util.Objects;
 public class Priority implements Comparable<Priority> {
     private final char value;
 
-    Priority(char value) {
-        if (!Character.isLetter(value)) {
+    Priority(char ch) {
+        char value = Character.toUpperCase(ch);
+        if (value < 'A' || value > 'Z') {
             throw new IllegalArgumentException("Priority character must be a letter in range A-Z");
         }
-        this.value = Character.toUpperCase(value);
+        this.value = value;
     }
 
     public char getValue() {
